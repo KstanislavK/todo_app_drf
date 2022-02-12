@@ -17,7 +17,7 @@ const UserList = ({users}) => {
             <table class='table'>
                 <thead>
                 <tr>
-                    <th scope="col">Usename</th>
+                    <th scope="col">Username</th>
                     <th scope="col">First name</th>
                     <th scope="col">Last name</th>
                     <th scope="col">Email</th>
