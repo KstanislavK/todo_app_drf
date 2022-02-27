@@ -36,7 +36,11 @@ const ProjectList = ({projects}) => {
 
 const ProjectUser = ({item}) => {
     return (
-        <li>{item.firstName} {item.lastName}</li>
+    <tr>
+        <td>{item.firstName}</td>
+        <td>{item.lastName}</td>
+        <td>{item.email}</td>
+    </tr>
     )
 }
 
@@ -49,13 +53,20 @@ const ProjectDetail = ({getProject, item}) => {
             <div className="card">
                 <h4 className="card-header">{item.name}</h4>
                 <div className="card-body">
-                    <p className="card-text">
                         Пользователи:
-                        <ol>
-                            {users.map((user) => <ProjectUser item={user} />)}
-                        </ol>
-                    </p>
-                    Repository: <a href={item.repository} className='link-dark'>{item.repository}</a>
+                        <table className="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Имя</th>
+                                    <th>Фамилия</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {users.map((user) => <ProjectUser item={user} />)}
+                            </tbody>
+                        </table>
+                    Repository: <a href={item.repository} className='link-dark' target="_blank">{item.repository}</a>
                 </div>
             </div>
         </div>

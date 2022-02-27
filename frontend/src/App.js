@@ -35,14 +35,6 @@ class App extends React.Component {
             }).catch(error => console.log(error))
     }
 
-    getProjectTodos(id) {
-        axios.get(get_url(`todos/?project=${id}`))
-            .then(response => {
-                console.log(response.data.results)
-                this.setState({pr_todos: response.data.results})
-            }).catch(error => console.log(error))
-    }
-
     componentDidMount() {
         // получаем юзеров
         axios.get(get_url('users/'))
@@ -95,7 +87,9 @@ class App extends React.Component {
                             </Route>
                             <Route path="/project/:id" children={
                                 <ProjectDetail getProject={(id) => this.getProject(id)}
-                                item={this.state.project}/>}/>
+                                item={this.state.project}
+                                />}
+                            />
                             <Route component={NF404}/>
                         </Switch>
                     </section>
