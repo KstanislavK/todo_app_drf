@@ -18,7 +18,7 @@ class ProjectList(models.Model):
 
 
 class TODOList(models.Model):
-    project = models.ForeignKey(ProjectList, on_delete=models.CASCADE, verbose_name='Проект')
+    project = models.ForeignKey(ProjectList, on_delete=models.CASCADE, verbose_name='Проект', related_name='todo')
     text = models.CharField(verbose_name='Текст заметки', max_length=256)
     created_at = models.DateTimeField(verbose_name='Создано', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлено', auto_now_add=True)
