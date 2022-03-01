@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
   return (
-    <div class='footer container'>
+    <div className='footer container'>
         2022 &copy; KSK
     </div>
   );

@@ -13,8 +13,8 @@ const UserItem = ({user}) => {
 
 const UserList = ({users}) => {
     return (
-        <div class='container'>
-            <table class='table'>
+        <div className='container'>
+            <table className='table'>
                 <thead>
                 <tr>
                     <th scope="col">Username</th>
