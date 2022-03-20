@@ -11,8 +11,19 @@ class ProjectSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class TODOSerializer(ModelSerializer):
+class TODOSerializerBase(ModelSerializer):
 
     class Meta:
         model = TODOList
         exclude = ('is_active',)
+
+
+class TODOSerializer(ModelSerializer):
+    project = ProjectSerializer
+    author = UserModelSerializer
+
+    class Meta:
+        model = TODOList
+        exclude = ('is_active',)
+
+
