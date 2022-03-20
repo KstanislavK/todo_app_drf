@@ -49,6 +49,7 @@ OTHER_APPS = [
     'django_filters',
     'corsheaders',
     'drf_yasg',
+    'graphene_django',
 ]
 
 MY_APPS = [
@@ -167,4 +168,8 @@ REST_FRAMEWORK = {
 
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
+}
+
+GRAPHENE = {
+    'SCHEMA': 'backend.schema.schema',
 }
