@@ -6,6 +6,7 @@ import TodoList from './components/Todos.js'
 import Footer from './components/Footer.js';
 import Navbar from './components/Menu.js';
 import NF404 from './components/NF404.js';
+import TodoForm from "./components/TodoForm";
 import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
 import LoginForm from './components/Auth.js';
 import Cookies from 'universal-cookie';
@@ -30,6 +31,33 @@ class App extends React.Component {
             token: '',
         }
     }
+
+    createTodo(name,author, project){
+        const headers = this.getHeaders()
+        const data = {name:name,author:[author],project:project}
+        axios.post(get_url('todos/'), data,{headers}).then(
+            response => {
+                this.loadData()
+            }
+        ).catch(error => {
+            console.log(error)
+            this.setState({todos:[]})
+        })
+
+    }
+
+    deleteTodo(id){
+        const headers = this.getHeaders()
+        axios.delete(get_url(`todos/${id}`,), {headers}).then(
+            response =>{
+                this.loadData()
+            }
+        ).catch(error =>{
+            this.setState({books:[]})
+        })
+    }
+
+
 
     getProject(id) {
         axios.get(get_url(`projects/${id}`))
@@ -144,7 +172,10 @@ class App extends React.Component {
                                 <ProjectList projects={this.state.projects}/>
                             </Route>
                             <Route exact path='/todos'>
-                                <TodoList todos={this.state.todos}/>
+                                <TodoList todos={this.state.todos} deleteTodo={(id)=>this.deleteTodo(id)}/>
+                            </Route>
+                            <Route exact path='/todos/create'>
+                                <TodoForm author={this.state.users} createTodo={(name, author, project)=>this.createTodo(id)}/>
                             </Route>
                             <Route exact path='/users'>
                                 <UserList users={this.state.users}/>
